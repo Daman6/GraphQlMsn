@@ -1,0 +1,226 @@
+query gameScheduleQuery($site: String!, $limit: Int!,$offset: Int!, $startDate: Int!, $endDate: Int, $sortBy: String, $sortOrder: SortOrder)
+{
+    gameSchedule(
+        site: $site,
+        limit: $limit,
+        offset: $offset,
+        startDate: $startDate,
+        endDate: $endDate,
+        sortBy: $sortBy,
+        sortOrder: $sortOrder
+    ) {
+        limit
+        offset
+        items{
+            ...on Game {
+                ...PartialGame
+            }
+        }
+    }
+}
+#
+#fragment PartialGist on Content {
+#    id
+#    gist {
+#        id
+#        site
+#        permalink
+#        title
+#        description
+#        imageGist {
+#            r32x9
+#            r16x9
+#            r4x3
+#            r3x4
+#            r1x1
+#            r9x16
+#        }
+#        primaryCategory {
+#            id
+#            title
+#        }
+#        contentType
+#        languageCode
+#        timezone
+#        featuredTag {
+#            id
+#            title
+#        }
+#        scheduleStartDate
+#        scheduleEndDate
+#    }
+#}
+#
+fragment PartialGame on Game {
+    id
+    title
+#    ...PartialGist
+#    categories {
+#        id
+#        title
+#    }
+#    tags {
+#        id
+#        title
+#    }
+#    creditBlocks {
+#        title
+#        credits {
+#            title
+#        }
+#    }
+#    homeTeam {
+#        ...TeamDetails
+#    }
+#    awayTeam {
+#        ...TeamDetails
+#    }
+#    highlights {
+#        ...VideoDetails
+#    }
+#    livestreams {
+#        ...VideoDetails
+#    }
+#    preview {
+#        ...VideoDetails
+#    }
+#    webliveUrl
+#    author {
+#        name
+#    }
+#    currentState
+#    states {
+#        default {
+#            startDateTime
+#            endDateTime
+#        }
+#        pre {
+#            startDateTime
+#            endDateTime
+#        }
+#        live {
+#            startDateTime
+#            endDateTime
+#        }
+#        post {
+#            startDateTime
+#            endDateTime
+#        }
+#        end {
+#            startDateTime
+#            endDateTime
+#        }
+#    }
+#    metadata {
+#        name
+#        value
+#    }
+#    schedules {
+#        startDate
+#        endDate
+#        venue {
+#            id
+#            title
+#        }
+#    }
+#    score {
+#        status
+#        type
+#        number
+#        homePoint
+#        awayPoint
+#    }
+#    broadcaster
+#    publishDate
+#    ticketMasterId
+}
+#
+#fragment TeamDetails on Team {
+#    id
+#    title
+#    shortName
+#    ...PartialGist
+#    categories {
+#        id
+#        title
+#    }
+#    tags {
+#        id
+#        title
+#    }
+#    creditBlocks {
+#        title
+#        credits {
+#            title
+#        }
+#    }
+#}
+#
+#fragment VideoDetails on Video {
+#    id
+#    title
+#    ... PartialGist
+#    categories {
+#        id
+#        title
+#    }
+#    tags {
+#        id
+#        title
+#    }
+#    optionalTags {
+#        id
+#        title
+#    }
+#    creditBlocks {
+#        title
+#        credits {
+#            title
+#        }
+#    }
+#    monetizationModels {
+#        id
+#        type
+#    }
+#    plans {
+#        type
+#        planIds
+#        planGroupIds
+#    }
+#    pricing {
+#        type
+#        currency
+#        rent
+#        purchase {
+#            sd
+#            hd
+#            uhd
+#        }
+#    }
+#    parentalRating
+#    showInAdvance
+#    year
+#    free
+#    runtime
+#    skipIntroStartTime
+#    skipIntroEndTime
+#    skipRecapStartTime
+#    skipRecapEndTime
+#    playNextTime
+#    liveDetails {
+#        isLowLatency
+#        isDvrEnabled
+#    }
+#    streamingInfo {
+#        isLiveStream
+#        drmEnabled
+#        isSSAIEnabled
+#
+#    }
+#    metadata {
+#        name
+#        value
+#    }
+#    publishDate
+#
+#}
